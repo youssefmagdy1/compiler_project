@@ -83,8 +83,7 @@ Inheritance diagram for MyJavaListener:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a588096c63fc114ec37a7bdf541927b46"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_java_listener.html#a588096c63fc114ec37a7bdf541927b46">MyJavaListener</a> (TokenStream tokens)</td></tr>
 <tr class="separator:a588096c63fc114ec37a7bdf541927b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec6f358697717d5798de8cceb262a390"><td class="memItemLeft" align="right" valign="top"><a id="aec6f358697717d5798de8cceb262a390" name="aec6f358697717d5798de8cceb262a390"></a>
-TokenStreamRewriter&#160;</td><td class="memItemRight" valign="bottom"><b>getRewriter2</b> ()</td></tr>
+<tr class="memitem:aec6f358697717d5798de8cceb262a390"><td class="memItemLeft" align="right" valign="top">TokenStreamRewriter&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_java_listener.html#aec6f358697717d5798de8cceb262a390">getRewriter2</a> ()</td></tr>
 <tr class="separator:aec6f358697717d5798de8cceb262a390"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e9f7632f98048ea68be65dbb0b9edc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_my_java_listener.html#a4e9f7632f98048ea68be65dbb0b9edc4">enterStatement</a> (JavaParser.StatementContext ctx)</td></tr>
 <tr class="separator:a4e9f7632f98048ea68be65dbb0b9edc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1120,8 +1119,7 @@ TokenStreamRewriter&#160;</td><td class="memItemRight" valign="bottom"><b>getRew
         </tr>
       </table>
 </div><div class="memdoc">
-<p >fn MyListenerParser(JavaParser parser) The Consturtor of the class</p>
-<p >This initializes the parser while making a <a class="el" href="class_java_parser.html">JavaParser</a> instance </p><dl class="params"><dt>Parameters</dt><dd>
+<p >fn MyListenerParser(JavaParser parser) The Consturtor of the class rewriter is used to rewrite the tokens =&gt; Java injections rewriter2 is used to rewrite the tokens =&gt; HTML Tages injections This initializes the parser while making a <a class="el" href="class_java_parser.html">JavaParser</a> instance </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">parser</td><td></td></tr>
   </table>
@@ -1153,7 +1151,13 @@ TokenStreamRewriter&#160;</td><td class="memItemRight" valign="bottom"><b>getRew
   </dd>
 </dl>
 The default implementation does nothing.</p>
-<p >The default implementation does nothing.</p>
+<p >HANDLING FOR ENTRING CATCH STATEMENT</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>CatchClauseContext </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Reimplemented from <a class="el" href="class_java_parser_base_listener.html#af15c444da54a24de7fef1663ec20483d">JavaParserBaseListener</a>.</p>
 
@@ -1181,7 +1185,13 @@ The default implementation does nothing.</p>
   </dd>
 </dl>
 The default implementation does nothing.</p>
-<p >The default implementation does nothing.</p>
+<p >HANDLING FOR ENTRING ELSE STATEMENT</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>StatementContext </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Reimplemented from <a class="el" href="class_java_parser_base_listener.html#afdb984a456352eb4f715ab29574e5bc2">JavaParserBaseListener</a>.</p>
 
@@ -1209,7 +1219,13 @@ The default implementation does nothing.</p>
   </dd>
 </dl>
 The default implementation does nothing.</p>
-<p >The default implementation does nothing.</p>
+<p >HANDLING FOR ENTRING FINALLY STATEMENT</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>FinallyBlockContext </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Reimplemented from <a class="el" href="class_java_parser_base_listener.html#ae067b568f272177c03feddd4fde77849">JavaParserBaseListener</a>.</p>
 
@@ -1237,7 +1253,7 @@ The default implementation does nothing.</p>
   </dd>
 </dl>
 The default implementation does nothing.</p>
-<p >Handling for entring each statment</p>
+<p >HANDLING FOR ENTRING each statment : IF WHILE DO IF SWITCH TRY</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ctx</td><td>StatementContext </td></tr>
@@ -1246,6 +1262,24 @@ The default implementation does nothing.</p>
 </dl>
 
 <p>Reimplemented from <a class="el" href="class_java_parser_base_listener.html#a87316e3d54a58746e39428f2fd046b43">JavaParserBaseListener</a>.</p>
+
+</div>
+</div>
+<a id="aec6f358697717d5798de8cceb262a390" name="aec6f358697717d5798de8cceb262a390"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec6f358697717d5798de8cceb262a390">&#9670;&nbsp;</a></span>getRewriter2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TokenStreamRewriter MyJavaListener.getRewriter2 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >GETTER for the second rewriter </p>
 
 </div>
 </div>

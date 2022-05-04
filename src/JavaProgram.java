@@ -44,6 +44,13 @@ public class JavaProgram {
 
     }
 
+    /**
+	 * {@inheritDoc}
+	 *
+	 * <p>PARSING SOURCE TO TOKEN AND GENERATE THE PARSING TREE</p>
+     * @param input CharStream
+     * 
+	 */
     public static  MyJavaListener generateAndWalkParserTree(CharStream input ) {
         JavaLexer lexer = new JavaLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -58,7 +65,14 @@ public class JavaProgram {
     }
 
 
-    // generate java injection code , compile and run it
+    /**
+	 * {@inheritDoc}
+	 *
+	 * <p>INSERCT JAVA MODIFICATIONS</p>
+     * @param extractor MyJavaListener 
+     * @param testNumber String
+     * 
+	 */
     public static File  generateJavaInjectionCode (MyJavaListener extractor , String testNumber)
             throws IOException
     {
@@ -82,6 +96,13 @@ public class JavaProgram {
         return  outputJavaFile ;
     }
 
+     /**
+	 * {@inheritDoc}
+	 *
+	 * <p>RUN THE INSERCTED JAVA MODIFICATIONS AND INDCATE THE VISITED LINES</p>
+     * @param outputJavaFile File
+     * 
+	 */
     public static BufferedReader runJavaInjectionCode (File outputJavaFile){
 
         Process theProcess = null;
@@ -109,6 +130,13 @@ public class JavaProgram {
 
     }
 
+    /**
+	 * {@inheritDoc}
+	 *
+	 * <p>CONVERT JAVA TO HTML AND INSERT PRE TAG BEFORE EVERY BLOCK </p>
+     * @param input CharStream
+     * 
+	 */
     public static void writeHtml (BufferedReader  inStream ,MyJavaListener extractor) throws IOException {
 
         File outputHtmlFile = new File(outputDir+outputFileName+".html") ;
@@ -139,6 +167,15 @@ public class JavaProgram {
 
     }
 
+
+    /**
+	 * {@inheritDoc}
+	 *
+	 * <p>HELPER METHOD</p>
+     * @param path String 
+     * @param testNum String
+     * 
+	 */
     static void processor(String path, String testNum) throws IOException {
         CharStream input = CharStreams.fromFileName(path);
 

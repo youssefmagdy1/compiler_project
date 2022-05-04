@@ -74,19 +74,169 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a07e1151fee2cfab47a6333b0d2c8b5c6"><td class="memItemLeft" align="right" valign="top"><a id="a07e1151fee2cfab47a6333b0d2c8b5c6" name="a07e1151fee2cfab47a6333b0d2c8b5c6"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (String[] args)  throws Exception </td></tr>
 <tr class="separator:a07e1151fee2cfab47a6333b0d2c8b5c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4357aaa8b726f37e31f8f2f0b97cdd51"><td class="memItemLeft" align="right" valign="top"><a id="a4357aaa8b726f37e31f8f2f0b97cdd51" name="a4357aaa8b726f37e31f8f2f0b97cdd51"></a>
-static <a class="el" href="class_my_java_listener.html">MyJavaListener</a>&#160;</td><td class="memItemRight" valign="bottom"><b>generateAndWalkParserTree</b> (CharStream input)</td></tr>
+<tr class="memitem:a4357aaa8b726f37e31f8f2f0b97cdd51"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_my_java_listener.html">MyJavaListener</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_java_program.html#a4357aaa8b726f37e31f8f2f0b97cdd51">generateAndWalkParserTree</a> (CharStream input)</td></tr>
 <tr class="separator:a4357aaa8b726f37e31f8f2f0b97cdd51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae585e555822f94c69ad34410632e992f"><td class="memItemLeft" align="right" valign="top"><a id="ae585e555822f94c69ad34410632e992f" name="ae585e555822f94c69ad34410632e992f"></a>
-static File&#160;</td><td class="memItemRight" valign="bottom"><b>generateJavaInjectionCode</b> (<a class="el" href="class_my_java_listener.html">MyJavaListener</a> extractor, String testNumber)  throws IOException     </td></tr>
+<tr class="memitem:ae585e555822f94c69ad34410632e992f"><td class="memItemLeft" align="right" valign="top">static File&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_java_program.html#ae585e555822f94c69ad34410632e992f">generateJavaInjectionCode</a> (<a class="el" href="class_my_java_listener.html">MyJavaListener</a> extractor, String testNumber)  throws IOException     </td></tr>
 <tr class="separator:ae585e555822f94c69ad34410632e992f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bc7fa607f27636909c3eb67da1d9349"><td class="memItemLeft" align="right" valign="top"><a id="a7bc7fa607f27636909c3eb67da1d9349" name="a7bc7fa607f27636909c3eb67da1d9349"></a>
-static BufferedReader&#160;</td><td class="memItemRight" valign="bottom"><b>runJavaInjectionCode</b> (File outputJavaFile)</td></tr>
+<tr class="memitem:a7bc7fa607f27636909c3eb67da1d9349"><td class="memItemLeft" align="right" valign="top">static BufferedReader&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_java_program.html#a7bc7fa607f27636909c3eb67da1d9349">runJavaInjectionCode</a> (File outputJavaFile)</td></tr>
 <tr class="separator:a7bc7fa607f27636909c3eb67da1d9349"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3e1109354fb6b8dbffc30999768bbc6"><td class="memItemLeft" align="right" valign="top"><a id="ab3e1109354fb6b8dbffc30999768bbc6" name="ab3e1109354fb6b8dbffc30999768bbc6"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>writeHtml</b> (BufferedReader inStream, <a class="el" href="class_my_java_listener.html">MyJavaListener</a> extractor)  throws IOException </td></tr>
+<tr class="memitem:ab3e1109354fb6b8dbffc30999768bbc6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_java_program.html#ab3e1109354fb6b8dbffc30999768bbc6">writeHtml</a> (BufferedReader inStream, <a class="el" href="class_my_java_listener.html">MyJavaListener</a> extractor)  throws IOException </td></tr>
 <tr class="separator:ab3e1109354fb6b8dbffc30999768bbc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4357aaa8b726f37e31f8f2f0b97cdd51" name="a4357aaa8b726f37e31f8f2f0b97cdd51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4357aaa8b726f37e31f8f2f0b97cdd51">&#9670;&nbsp;</a></span>generateAndWalkParserTree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_my_java_listener.html">MyJavaListener</a> JavaProgram.generateAndWalkParserTree </td>
+          <td>(</td>
+          <td class="paramtype">CharStream&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >PARSING SOURCE TO TOKEN AND GENERATE THE PARSING TREE</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>CharStream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae585e555822f94c69ad34410632e992f" name="ae585e555822f94c69ad34410632e992f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae585e555822f94c69ad34410632e992f">&#9670;&nbsp;</a></span>generateJavaInjectionCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static File JavaProgram.generateJavaInjectionCode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_my_java_listener.html">MyJavaListener</a>&#160;</td>
+          <td class="paramname"><em>extractor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">String&#160;</td>
+          <td class="paramname"><em>testNumber</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws IOException</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >INSERCT JAVA MODIFICATIONS</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">extractor</td><td><a class="el" href="class_my_java_listener.html">MyJavaListener</a> </td></tr>
+    <tr><td class="paramname">testNumber</td><td>String </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7bc7fa607f27636909c3eb67da1d9349" name="a7bc7fa607f27636909c3eb67da1d9349"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bc7fa607f27636909c3eb67da1d9349">&#9670;&nbsp;</a></span>runJavaInjectionCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static BufferedReader JavaProgram.runJavaInjectionCode </td>
+          <td>(</td>
+          <td class="paramtype">File&#160;</td>
+          <td class="paramname"><em>outputJavaFile</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >RUN THE INSERCTED JAVA MODIFICATIONS AND INDCATE THE VISITED LINES</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">outputJavaFile</td><td>File </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab3e1109354fb6b8dbffc30999768bbc6" name="ab3e1109354fb6b8dbffc30999768bbc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3e1109354fb6b8dbffc30999768bbc6">&#9670;&nbsp;</a></span>writeHtml()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void JavaProgram.writeHtml </td>
+          <td>(</td>
+          <td class="paramtype">BufferedReader&#160;</td>
+          <td class="paramname"><em>inStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_my_java_listener.html">MyJavaListener</a>&#160;</td>
+          <td class="paramname"><em>extractor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> throws IOException</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >CONVERT JAVA TO HTML AND INSERT PRE TAG BEFORE EVERY BLOCK </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>CharStream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/JavaProgram.java</li>
 </ul>

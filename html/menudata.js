@@ -32,11 +32,17 @@ var menudata={children:[
 {text:"Class Members",url:"functions.html",children:[
 {text:"All",url:"functions.html",children:[
 {text:"e",url:"functions.html#index_e"},
+{text:"g",url:"functions_g.html#index_g"},
 {text:"m",url:"functions_m.html#index_m"},
+{text:"r",url:"functions_r.html#index_r"},
 {text:"t",url:"functions_t.html#index_t"},
-{text:"v",url:"functions_v.html#index_v"}]},
+{text:"v",url:"functions_v.html#index_v"},
+{text:"w",url:"functions_w.html#index_w"}]},
 {text:"Functions",url:"functions_func.html",children:[
 {text:"e",url:"functions_func.html#index_e"},
+{text:"g",url:"functions_func_g.html#index_g"},
 {text:"m",url:"functions_func_m.html#index_m"},
-{text:"v",url:"functions_func_v.html#index_v"}]},
+{text:"r",url:"functions_func_r.html#index_r"},
+{text:"v",url:"functions_func_v.html#index_v"},
+{text:"w",url:"functions_func_w.html#index_w"}]},
 {text:"Variables",url:"functions_vars.html"}]}]}]}

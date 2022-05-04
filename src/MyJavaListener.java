@@ -17,15 +17,22 @@ public class MyJavaListener extends JavaParserBaseListener{
       /***************************************************************************//**
      * fn MyListenerParser(JavaParser parser)
      * The Consturtor of the class
-     *
+     *  rewriter is used to rewrite the tokens => Java injections 
+     * rewriter2 is used to rewrite the tokens => HTML Tages injections
      * This initializes the parser while making a JavaParser instance
      * @param parser
      ******************************************************************************/
     public MyJavaListener(TokenStream tokens){
-        rewriter = new TokenStreamRewriter(tokens);
-        rewriter2 =  new TokenStreamRewriter(tokens) ;
+        rewriter = new TokenStreamRewriter(tokens); // 
+        rewriter2 =  new TokenStreamRewriter(tokens) ; //
     }
 
+    /**
+	 * {@inheritDoc}
+	 *
+	 * <p>GETTER for the second rewriter </p>
+     * 
+	 */
     public TokenStreamRewriter getRewriter2(){
         return  rewriter2 ;
     }
@@ -35,7 +42,7 @@ public class MyJavaListener extends JavaParserBaseListener{
     /**
 	 * {@inheritDoc}
 	 *
-	 * <p>Handling for entring each statment</p>
+	 * <p>HANDLING FOR ENTRING each statment : IF WHILE DO IF SWITCH TRY</p>
      * @param ctx StatementContext
      * 
 	 */
@@ -109,6 +116,13 @@ public class MyJavaListener extends JavaParserBaseListener{
         super.enterStatement(ctx);
     }
 
+    /**
+	 * {@inheritDoc}
+	 *
+	 * <p>HANDLING FOR ENTRING CATCH STATEMENT</p>
+     * @param ctx CatchClauseContext
+     * 
+	 */
     @Override
     public void enterCatchClause(JavaParser.CatchClauseContext ctx) {
         block = String.format("\"CATCH_%d\"", catchblockindex);
@@ -119,6 +133,14 @@ public class MyJavaListener extends JavaParserBaseListener{
         super.enterCatchClause(ctx);
     }
 
+
+     /**
+	 * {@inheritDoc}
+	 *
+	 * <p>HANDLING FOR ENTRING FINALLY STATEMENT</p>
+     * @param ctx FinallyBlockContext
+     * 
+	 */
     @Override
     public void enterFinallyBlock(JavaParser.FinallyBlockContext ctx) {
         block = String.format("\"FINALLY_%d\"", finallyblockindex);
@@ -128,7 +150,13 @@ public class MyJavaListener extends JavaParserBaseListener{
         finallyblockindex++;
         super.enterFinallyBlock(ctx);
     }
-
+    /**
+	 * {@inheritDoc}
+	 *
+	 * <p>HANDLING FOR ENTRING ELSE STATEMENT</p>
+     * @param ctx StatementContext
+     * 
+	 */
     @Override
     public void enterElseStatement(JavaParser.ElseStatementContext ctx) {
 
@@ -158,6 +186,15 @@ public class MyJavaListener extends JavaParserBaseListener{
         super.enterElseStatement(ctx);
     }
 
+     /**
+	 * {@inheritDoc}
+	 *
+	 * <p>helper method to inster the HTML tag PRE before every statment</p>
+     * @param ctx ParserRuleContext 
+     * @param s String
+     * @param index int
+     * 
+	 */
     void preInserter(ParserRuleContext ctx, String s, int index){
         String html_div =" <pre id='"+s+index+"'>";
         rewriter2.insertBefore(ctx.start ,html_div);
