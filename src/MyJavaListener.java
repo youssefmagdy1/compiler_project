@@ -20,6 +20,7 @@ public class MyJavaListener extends JavaParserBaseListener{
     int methodblockindex = 0;
     int caseblockindex = 0;
     int preExpressionindex = 0;
+    int gPreExpressionindex = 0;
     String booleanOperation = "" ;
 
       /***********************************************************************
@@ -146,7 +147,7 @@ public class MyJavaListener extends JavaParserBaseListener{
         checkParExpression(parEx , ctx.start  );
         preInserter(ctx.start , ctx.parExpression().stop,  "preExpression_" ,
                 preExpressionindex);
-        preExpressionindex ++ ;
+        preExpressionindex ++ ; gPreExpressionindex ++ ;
 
 
         if(ctx.getChild(2).getText().charAt(0) =='{') {
@@ -180,12 +181,12 @@ public class MyJavaListener extends JavaParserBaseListener{
 
             // check for green part
             addString += "else { "; // here should add else
-            bp = constructBreakPoint("GpreExpression", preExpressionindex);
+            bp = constructBreakPoint("GpreExpression", gPreExpressionindex-1);
             addString += bp + "}" ;
 
         }
         else {
-            bp = constructBreakPoint("GpreExpression", preExpressionindex);
+            bp = constructBreakPoint("GpreExpression", gPreExpressionindex-1);
             addString += bp ;
         }
         rewriter.insertBefore(t, addString);
@@ -237,7 +238,7 @@ public class MyJavaListener extends JavaParserBaseListener{
         checkParExpression(parEx , ctx.start  );
         preInserter(ctx.start , ctx.forControl().stop,  "preExpression_" ,
                 preExpressionindex);
-        preExpressionindex ++ ;
+        preExpressionindex ++ ;gPreExpressionindex ++ ;
 
 
         if(ctx.getChild(4).getText().charAt(0) =='{') {
@@ -267,7 +268,7 @@ public class MyJavaListener extends JavaParserBaseListener{
         checkParExpression(parEx , ctx.start  );
         preInserter(ctx.start , ctx.parExpression().stop,  "preExpression_" ,
                 preExpressionindex);
-        preExpressionindex ++ ;
+        preExpressionindex ++ ;gPreExpressionindex ++ ;
 
         if(ctx.getChild(2).getText().charAt(0) =='{') {
             addBreakPoint(ctx.whileS.getStart(), "while" , whileblockindex );

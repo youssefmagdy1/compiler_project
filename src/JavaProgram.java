@@ -162,6 +162,7 @@ public class JavaProgram {
             System.out.println(s);
             if(s.matches("(.*)GpreExpression(.*)"))
             {
+                System.out.print("doneeeeeeeeeeee ");
                 s = "#"+s.replace("G" ,"")
                         +"{background:chartreuse !important}\n";
             }else if (s.matches("(.*)preExpression(.*)")){

@@ -4,13 +4,14 @@
 body{background: chartreuse;}
  pre{background : lightsalmon}
 pre{display:inline ;}#method_0{background:chartreuse}
+#preExpression_0{background:orange}
+#while_0{background:chartreuse}
 #preExpression_0{background:chartreuse !important}
-#preExpression_1{background:chartreuse !important}
 #while_1{background:chartreuse}
 #do_0{background:chartreuse}
 #do_1{background:chartreuse}
 </style>
  </head>
  <body> <pre style='background: chartreuse;'>
-package test;<br><br>public class test_3 {<br>     <pre id='METHOD_0'>public static void main(String[] args) {<br>        int i = 5;<br><br>         <span id='preExpression_0'>while (i < 5)</span><br>             <pre id='WHILE_0'>System.out.println(i++);</pre><br><br>         <span id='preExpression_1'>while (i < 7)</span>  <pre id='WHILE_1'>{<br>            System.out.println(i);<br>            i++;<br>        }</pre><br><br>        do<br>             <pre id='DO_0'>System.out.println(i++);</pre><br>        while (i < 5);<br><br>        do  <pre id='DO_1'>{<br>            System.out.println(i);<br>            i++;<br>        }</pre> while (i<7);<br>    }</pre><br>}<br> </pre></body> 
+package test;<br><br>public class test_3 {<br>     <pre id='METHOD_0'>public static void main(String[] args) {<br>        int i = 5;<br>        int x = 3;<br>         <span id='preExpression_0'>while (x==3 || i < 5 )</span> <pre id='WHILE_0'>{<br>            System.out.println(i++);<br>            x++;<br>        }</pre><br><br><br>         <span id='preExpression_1'>while (i < 7)</span>  <pre id='WHILE_1'>{<br>            System.out.println(i);<br>            i++;<br>        }</pre><br><br>        do<br>             <pre id='DO_0'>System.out.println(i++);</pre><br>        while (i < 5);<br><br>        do  <pre id='DO_1'>{<br>            System.out.println(i);<br>            i++;<br>        }</pre> while (i<7);<br>    }</pre><br>}<br> </pre></body> 
 </html> 

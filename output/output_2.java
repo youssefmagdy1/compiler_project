@@ -1,7 +1,7 @@
 package output;
 
  
- import java.util.HashSet; // Import the HashSet class 
+ import java.util.HashSet; //  HashSet class 
  public class output_2 {
 static HashSet<Integer> __for = new HashSet<Integer>(); 
 static HashSet<Integer> __if = new HashSet<Integer>(); 
@@ -26,18 +26,18 @@ if(! __method.contains(0)){System.out.println("method_0");__method.add(0);}
         int max = arr[0];
         //Loop through the array
         
-if(! __GpreExpression.contains(0)){System.out.println("GpreExpression_0");__GpreExpression.add(0);}for (int k : arr) {
+if(! __GpreExpression.contains(-1)){System.out.println("GpreExpression_-1");__GpreExpression.add(-1);}for (int k : arr) {
 if(! __for.contains(0)){System.out.println("for_0");__for.add(0);}
             //Compare elements of array with max
             
-if(! __GpreExpression.contains(1)){System.out.println("GpreExpression_1");__GpreExpression.add(1);}if (k == 1 )
+if(! __GpreExpression.contains(0)){System.out.println("GpreExpression_0");__GpreExpression.add(0);}if (k == 1 )
                 {max = k;
 if(! __if.contains(0)){System.out.println("if_0");__if.add(0);}}
 
         }
 
         
-if(! __GpreExpression.contains(2)){System.out.println("GpreExpression_2");__GpreExpression.add(2);}for (int j : arr) {max = j;
+if(! __GpreExpression.contains(1)){System.out.println("GpreExpression_1");__GpreExpression.add(1);}for (int j : arr) {max = j;
 if(! __for.contains(1)){System.out.println("for_1");__for.add(1);}}
 
 

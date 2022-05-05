@@ -2,7 +2,7 @@ package output;
 
 
  
- import java.util.HashSet; // Import the HashSet class 
+ import java.util.HashSet; //  HashSet class 
  public class output_5 {
 static HashSet<Integer> __for = new HashSet<Integer>(); 
 static HashSet<Integer> __if = new HashSet<Integer>(); 

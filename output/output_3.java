@@ -1,7 +1,7 @@
 package output;
 
  
- import java.util.HashSet; // Import the HashSet class 
+ import java.util.HashSet; //  HashSet class 
  public class output_3 {
 static HashSet<Integer> __for = new HashSet<Integer>(); 
 static HashSet<Integer> __if = new HashSet<Integer>(); 
@@ -20,15 +20,18 @@ static HashSet<Integer> __GpreExpression = new HashSet<Integer>();
     public static void main(String[] args) {
 if(! __method.contains(0)){System.out.println("method_0");__method.add(0);}
         int i = 5;
+        int x = 3;
+        if(x==3){
+if(! __preExpression.contains(0)){System.out.println("preExpression_0");__preExpression.add(0);}}else { 
+if(! __GpreExpression.contains(-1)){System.out.println("GpreExpression_-1");__GpreExpression.add(-1);}}while (x==3 || i < 5 ){
+if(! __while.contains(0)){System.out.println("while_0");__while.add(0);}
+            System.out.println(i++);
+            x++;
+        }
+
 
         
-if(! __GpreExpression.contains(0)){System.out.println("GpreExpression_0");__GpreExpression.add(0);}while (i < 5)
-            {System.out.println(i++);
-if(! __for.contains(0)){System.out.println("for_0");__for.add(0);}}
-
-
-        
-if(! __GpreExpression.contains(1)){System.out.println("GpreExpression_1");__GpreExpression.add(1);}while (i < 7) {
+if(! __GpreExpression.contains(0)){System.out.println("GpreExpression_0");__GpreExpression.add(0);}while (i < 7) {
 if(! __while.contains(1)){System.out.println("while_1");__while.add(1);}
             System.out.println(i);
             i++;
