@@ -1,4 +1,4 @@
-// Generated from E:/college_final_part/compilers/compiler_project\JavaParser.g4 by ANTLR 4.9.2
+// Generated from /home/youssef/collage/forth year/second_term/compiler/project/compiler_project/JavaParser.g4 by ANTLR 4.10.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -827,15 +827,233 @@ public interface JavaParserListener extends ParseTreeListener {
 	 */
 	void exitLocalTypeDeclaration(JavaParser.LocalTypeDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JavaParser#statement}.
+	 * Enter a parse tree produced by the {@code block_s}
+	 * labeled alternative in {@link JavaParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatement(JavaParser.StatementContext ctx);
+	void enterBlock_s(JavaParser.Block_sContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JavaParser#statement}.
+	 * Exit a parse tree produced by the {@code block_s}
+	 * labeled alternative in {@link JavaParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatement(JavaParser.StatementContext ctx);
+	void exitBlock_s(JavaParser.Block_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code assert_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssert_s(JavaParser.Assert_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code assert_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssert_s(JavaParser.Assert_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code if_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterIf_s(JavaParser.If_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code if_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitIf_s(JavaParser.If_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code for_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterFor_s(JavaParser.For_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code for_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitFor_s(JavaParser.For_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code while_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhile_s(JavaParser.While_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code while_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhile_s(JavaParser.While_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code do_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterDo_s(JavaParser.Do_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code do_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitDo_s(JavaParser.Do_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code try_1_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterTry_1_s(JavaParser.Try_1_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code try_1_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitTry_1_s(JavaParser.Try_1_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code try_2_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterTry_2_s(JavaParser.Try_2_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code try_2_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitTry_2_s(JavaParser.Try_2_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code switch_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSwitch_s(JavaParser.Switch_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code switch_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSwitch_s(JavaParser.Switch_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code synchronized_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSynchronized_s(JavaParser.Synchronized_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code synchronized_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSynchronized_s(JavaParser.Synchronized_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code return_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturn_s(JavaParser.Return_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code return_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturn_s(JavaParser.Return_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code throw_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterThrow_s(JavaParser.Throw_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code throw_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitThrow_s(JavaParser.Throw_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code break_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterBreak_s(JavaParser.Break_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code break_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitBreak_s(JavaParser.Break_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code continue_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterContinue_s(JavaParser.Continue_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code continue_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitContinue_s(JavaParser.Continue_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code yield_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterYield_s(JavaParser.Yield_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code yield_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitYield_s(JavaParser.Yield_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code semi_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSemi_s(JavaParser.Semi_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code semi_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSemi_s(JavaParser.Semi_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expression_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpression_s(JavaParser.Expression_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expression_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpression_s(JavaParser.Expression_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code switch_e_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSwitch_e_s(JavaParser.Switch_e_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code switch_e_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSwitch_e_s(JavaParser.Switch_e_sContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code identifier_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdentifier_s(JavaParser.Identifier_sContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code identifier_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdentifier_s(JavaParser.Identifier_sContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JavaParser#elseStatement}.
 	 * @param ctx the parse tree

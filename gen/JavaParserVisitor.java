@@ -1,4 +1,4 @@
-// Generated from E:/college_final_part/compilers/compiler_project\JavaParser.g4 by ANTLR 4.9.2
+// Generated from /home/youssef/collage/forth year/second_term/compiler/project/compiler_project/JavaParser.g4 by ANTLR 4.10.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -502,11 +502,138 @@ public interface JavaParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLocalTypeDeclaration(JavaParser.LocalTypeDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JavaParser#statement}.
+	 * Visit a parse tree produced by the {@code block_s}
+	 * labeled alternative in {@link JavaParser#statement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStatement(JavaParser.StatementContext ctx);
+	T visitBlock_s(JavaParser.Block_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code assert_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssert_s(JavaParser.Assert_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code if_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIf_s(JavaParser.If_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code for_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFor_s(JavaParser.For_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code while_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhile_s(JavaParser.While_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code do_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDo_s(JavaParser.Do_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code try_1_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTry_1_s(JavaParser.Try_1_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code try_2_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTry_2_s(JavaParser.Try_2_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code switch_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSwitch_s(JavaParser.Switch_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code synchronized_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSynchronized_s(JavaParser.Synchronized_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code return_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturn_s(JavaParser.Return_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code throw_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitThrow_s(JavaParser.Throw_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code break_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBreak_s(JavaParser.Break_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code continue_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitContinue_s(JavaParser.Continue_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code yield_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitYield_s(JavaParser.Yield_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code semi_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSemi_s(JavaParser.Semi_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expression_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpression_s(JavaParser.Expression_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code switch_e_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSwitch_e_s(JavaParser.Switch_e_sContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code identifier_s}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIdentifier_s(JavaParser.Identifier_sContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JavaParser#elseStatement}.
 	 * @param ctx the parse tree
