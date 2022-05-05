@@ -17,6 +17,7 @@ public class MyJavaListener extends JavaParserBaseListener{
     int switchblockindex = 0;
     int tryblockindex = 0;
     int finallyblockindex = 0;
+
     int methodblockindex = 0;
     int caseblockindex = 0;
     int preExpressionindex = 0;
@@ -25,12 +26,15 @@ public class MyJavaListener extends JavaParserBaseListener{
 
       /***********************************************************************
      * fn MyListenerParser(JavaParser parser)
+
      * The Consturtor of the class
      *  rewriter is used to rewrite the tokens => Java injections 
      * rewriter2 is used to rewrite the tokens => HTML Tages injections
      * This initializes the parser while making a JavaParser instance
      * @param tokens TokenStream
+
      *************************************************************************/
+
     public MyJavaListener(TokenStream tokens){
         rewriter = new TokenStreamRewriter(tokens); // 
         rewriter2 =  new TokenStreamRewriter(tokens) ; //
@@ -71,11 +75,13 @@ public class MyJavaListener extends JavaParserBaseListener{
      *
      */
     @Override
+
     public void enterClassBody(JavaParser.ClassBodyContext ctx) {
         String str = "\n";
         for(String block : blocks) {
             str += "static HashSet<Integer> __"+ block
                     +" = new HashSet<Integer>(); \n" ;
+
         }
         rewriter.insertAfter( ctx.LBRACE().getSymbol(), str );
         super.enterClassBody(ctx);
@@ -223,6 +229,7 @@ public class MyJavaListener extends JavaParserBaseListener{
         super.enterElseStatement(ctx);
     }
 
+
     /**
      * {@inheritDoc}
      *
@@ -331,6 +338,7 @@ public class MyJavaListener extends JavaParserBaseListener{
     }
 
     /**
+
      * {@inheritDoc}
      *
      * <p>HANDLING FOR ENTRING DO STATEMENT</p>
@@ -399,6 +407,7 @@ public class MyJavaListener extends JavaParserBaseListener{
     }
 
      /**
+
 	 * {@inheritDoc}
 	 *
 	 * <p>helper method to inster the HTML tag PRE before every statment</p>
