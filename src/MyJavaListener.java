@@ -22,7 +22,7 @@ public class MyJavaListener extends JavaParserBaseListener{
      *  rewriter is used to rewrite the tokens => Java injections 
      * rewriter2 is used to rewrite the tokens => HTML Tages injections
      * This initializes the parser while making a JavaParser instance
-     * @param tokens
+     * @param tokens TokenStream
      ******************************************************************************/
     public MyJavaListener(TokenStream tokens){
         rewriter = new TokenStreamRewriter(tokens); // 
