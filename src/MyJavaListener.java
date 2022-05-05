@@ -6,7 +6,8 @@ public class MyJavaListener extends JavaParserBaseListener{
     TokenStreamRewriter rewriter2;
     String block, alter;
     String[] blocks = {"for", "if", "while", "do", "try", "switch", "else",
-                        "finally", "catch", "method"} ;
+                    "finally", "catch", "method" , "case" ,"preExpression" ,
+                    "GpreExpression"};
     int ifblockindex = 0;
     int elseblockindex = 0;
     int doblockindex = 0;
@@ -17,15 +18,18 @@ public class MyJavaListener extends JavaParserBaseListener{
     int tryblockindex = 0;
     int finallyblockindex = 0;
     int methodblockindex = 0;
+    int caseblockindex = 0;
+    int preExpressionindex = 0;
+    String booleanOperation = "" ;
 
-      /***************************************************************************//**
+      /***********************************************************************
      * fn MyListenerParser(JavaParser parser)
      * The Consturtor of the class
      *  rewriter is used to rewrite the tokens => Java injections 
      * rewriter2 is used to rewrite the tokens => HTML Tages injections
      * This initializes the parser while making a JavaParser instance
      * @param tokens TokenStream
-     ******************************************************************************/
+     *************************************************************************/
     public MyJavaListener(TokenStream tokens){
         rewriter = new TokenStreamRewriter(tokens); // 
         rewriter2 =  new TokenStreamRewriter(tokens) ; //
@@ -52,7 +56,7 @@ public class MyJavaListener extends JavaParserBaseListener{
     @Override
     public void enterTypeDeclaration(JavaParser.TypeDeclarationContext ctx) {
         // insert package need to be used before declare any class
-        String str = " \n import java.util.HashSet; // Import the HashSet class \n " ;
+        String str = " \n import java.util.HashSet; //  HashSet class \n " ;
         rewriter.insertBefore(ctx.start ,str  );
 
         super.enterTypeDeclaration(ctx);
@@ -137,19 +141,57 @@ public class MyJavaListener extends JavaParserBaseListener{
     @Override
     public void enterIf_s(JavaParser.If_sContext ctx) {
 
+        //        bouns part
+        String parEx =  parExpression(ctx.parExpression().expression()) ;
+        checkParExpression(parEx , ctx.start  );
+        preInserter(ctx.start , ctx.parExpression().stop,  "preExpression_" ,
+                preExpressionindex);
+        preExpressionindex ++ ;
+
+
         if(ctx.getChild(2).getText().charAt(0) =='{') {
             addBreakPoint(ctx.ifS.getStart(), "if" , ifblockindex );
         }else{
             rewriter.insertBefore(ctx.ifS.getStart(), '{');
             addBreakPoint(ctx.ifS.getStop(), "if" , ifblockindex,"}\n");
         }
-
-//        if(ctx.getParent())
-        preInserter(ctx.ifS , "IF_", ifblockindex);
+        preInserter(ctx , "IF_", ifblockindex);
         ifblockindex++;
+
+
 
         super.enterIf_s(ctx);
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>helper method to check par expression  </p>
+     * @param leftChild string
+     * @param t Token
+     */
+    private void checkParExpression(String leftChild , Token t ) {
+        String addString ="" , bp = "";
+        if(!booleanOperation.equals("")) {
+            // check for orange part
+            addString = "if(" + leftChild + "){";
+            bp = constructBreakPoint("preExpression", preExpressionindex);
+            addString += bp + "}";
+
+            // check for green part
+            addString += "else { "; // here should add else
+            bp = constructBreakPoint("GpreExpression", preExpressionindex);
+            addString += bp + "}" ;
+
+        }
+        else {
+            bp = constructBreakPoint("GpreExpression", preExpressionindex);
+            addString += bp ;
+        }
+        rewriter.insertBefore(t, addString);
+
+    }
+
 
     /**
      * {@inheritDoc}
@@ -162,15 +204,17 @@ public class MyJavaListener extends JavaParserBaseListener{
     public void enterElseStatement(JavaParser.ElseStatementContext ctx) {
 
         if(ctx.getChildCount()>0){
-            if(!ctx.elseS.getStart().getText().equals("if")){
+//            if(!ctx.elseS.getStart().getText().equals("if")){
                 if(ctx.getChild(1).getText().charAt(0) =='{') {
-                    addBreakPoint(ctx.elseS.getStart(), "else" , elseblockindex );
+                    addBreakPoint(ctx.elseS.getStart(), "else" ,
+                            elseblockindex );
                 }
                 else{
                     rewriter.insertAfter(ctx.ELSE().getSymbol(), '{');
-                    addBreakPoint(ctx.elseS.getStop(), "else" , elseblockindex,"}\n");
+                    addBreakPoint(ctx.elseS.getStop(), "else" , elseblockindex,
+                            "}\n");
                 }
-            }
+//            }
             preInserter(ctx.elseS, "ELSE_", elseblockindex);
             elseblockindex++;
         }
@@ -187,6 +231,14 @@ public class MyJavaListener extends JavaParserBaseListener{
      */
     @Override
     public void enterFor_s(JavaParser.For_sContext ctx) {
+
+        // bouns
+        String parEx =  parExpression(ctx.forControl().expression()) ;
+        checkParExpression(parEx , ctx.start  );
+        preInserter(ctx.start , ctx.forControl().stop,  "preExpression_" ,
+                preExpressionindex);
+        preExpressionindex ++ ;
+
 
         if(ctx.getChild(4).getText().charAt(0) =='{') {
             addBreakPoint(ctx.forS.getStart(), "for" , forblockindex );
@@ -209,6 +261,13 @@ public class MyJavaListener extends JavaParserBaseListener{
      */
     @Override
     public void enterWhile_s(JavaParser.While_sContext ctx) {
+
+        // bouns part
+        String parEx =  parExpression(ctx.parExpression().expression()) ;
+        checkParExpression(parEx , ctx.start  );
+        preInserter(ctx.start , ctx.parExpression().stop,  "preExpression_" ,
+                preExpressionindex);
+        preExpressionindex ++ ;
 
         if(ctx.getChild(2).getText().charAt(0) =='{') {
             addBreakPoint(ctx.whileS.getStart(), "while" , whileblockindex );
@@ -252,17 +311,23 @@ public class MyJavaListener extends JavaParserBaseListener{
         tryblockindex++;
         super.enterTry_2_s(ctx);
     }
+    /**
+     * {@inheritDoc}
+     *
+     * <p>HANDLING FOR ENTRING SWITCH STATEMENT</p>
+     * @param ctx CatchClauseContext
+     *
+     */
 
-    // TODO :  switch
-//    @Override
-//    public void enterSwitch_s(JavaParser.Switch_sContext ctx) {
-//        block = String.format("\"SWITCH_%d\"", switchblockindex);
-//        alter = "\n\t\tSystem.out.println("+block+");";
-//        rewriter.insertBefore(ctx.getStop(), alter);
-//        preInserter(ctx, "SWITCH_", switchblockindex);
-//        switchblockindex++;
-//        super.enterSwitch_s(ctx);
-//    }
+    @Override
+    public void enterSwitchLabel(JavaParser.SwitchLabelContext ctx) {
+        addBreakPoint(ctx.stop , "case" , caseblockindex);
+        preInserter(ctx.getParent(), "case_", caseblockindex);
+        rewriter.insertAfter(ctx.stop, alter);
+        caseblockindex++;
+
+        super.enterSwitchLabel(ctx);
+    }
 
     /**
      * {@inheritDoc}
@@ -325,170 +390,13 @@ public class MyJavaListener extends JavaParserBaseListener{
     @Override
     public void enterMethodBody(JavaParser.MethodBodyContext ctx) {
         addBreakPoint(ctx.block().getStart(), "method" ,methodblockindex );
-        preInserter(ctx.getParent().getParent().getParent(), "METHOD_", methodblockindex);
+        preInserter(ctx.getParent().getParent().getParent(), "METHOD_",
+                methodblockindex);
         methodblockindex++;
 
         super.enterMethodBody(ctx);
     }
 
-    //    /**
-//	 * {@inheritDoc}
-//	 *
-//	 * <p>HANDLING FOR ENTRING each statment : IF WHILE DO IF SWITCH TRY</p>
-//     * @param ctx StatementContext
-//     *
-//	 */
-//    @Override
-//    public void enterStatement(JavaParser.StatementContext ctx) {
-//        switch (ctx.start.getText()){
-//            case "while":
-//                block = String.format("\"WHILE_%d\"", whileblockindex);
-//                alter = "\n\t\tSystem.out.println("+block+");";
-//
-//                // solve repeating problem
-//                // first if check that it is not with
-//
-//                if(ctx.getChild(2).getText().charAt(0) =='{') {
-//                    rewriter.insertAfter(ctx.whileS.getStart(), alter);
-//                }else{
-//                    rewriter.insertBefore(ctx.whileS.getStart(), '{');
-//                    rewriter.insertAfter(ctx.whileS.getStop(), alter+"\n\t\t}");
-//                }
-//                preInserter(ctx, "WHILE_", whileblockindex);
-//                whileblockindex++;
-//                break;
-//            case "for":
-//                block = String.format("\"FOR_%d\"", forblockindex);
-//                alter = "\n\t\tSystem.out.println("+block+");";
-//
-//                // solve repeating problem
-//                String _s0 = String.format("FOR_%d", forblockindex);
-//                String _s1 = "boolean " + _s0 + " = false ; \n" ;
-//                alter  = "if(!" + _s0 + "){" + alter + "\n" +_s0  + "= true ;}";
-//                rewriter.insertBefore(ctx.getStart() , _s1);
-//
-//                if(ctx.getChild(4).getText().charAt(0) =='{') {
-//                    rewriter.insertAfter(ctx.forS.getStart(), alter);
-//                }else{
-//                    rewriter.insertBefore(ctx.forS.getStart(), '{');
-//                    rewriter.insertAfter(ctx.forS.getStop(), alter+"\n\t\t}");
-//                }
-//                preInserter(ctx, "FOR_", forblockindex);
-//                forblockindex++;
-//                break;
-//            case "do":
-//                block = String.format("\"DO_%d\"", doblockindex);
-//                alter = "\n\t\tSystem.out.println("+block+");";
-//                if(ctx.getChild(1).getText().charAt(0) =='{') {
-//                    rewriter.insertAfter(ctx.doS.getStart(), alter);
-//                }else{
-//                    rewriter.insertAfter(ctx.getStart(), '{');
-//                    rewriter.insertAfter(ctx.doS.getStop(), alter+"\n\t\t}");
-//                }
-//                preInserter(ctx, "DO_", doblockindex);
-//                doblockindex++;
-//                break;
-//            case "if":
-//                block = String.format("\"IF_%d\"", ifblockindex);
-//                alter = "\n\t\tSystem.out.println("+block+");";
-//                if(ctx.getChild(2).getText().charAt(0) =='{') {
-//                    rewriter.insertAfter(ctx.ifS.getStart(), alter);
-//                }else{
-//                    rewriter.insertBefore(ctx.ifS.getStart(), '{');
-//                    rewriter.insertAfter(ctx.ifS.getStop(), alter+"\n\t\t}");
-//                }
-//                preInserter(ctx, "IF_", ifblockindex);
-//                ifblockindex++;
-//                break;
-//            case "switch":
-//                block = String.format("\"SWITCH_%d\"", switchblockindex);
-//                alter = "\n\t\tSystem.out.println("+block+");";
-//                rewriter.insertBefore(ctx.getStop(), alter);
-//                preInserter(ctx, "SWITCH_", switchblockindex);
-//                switchblockindex++;
-//                break;
-//            case "try":
-//                block = String.format("\"TRY_%d\"", tryblockindex);
-//                alter = "\n\t\tSystem.out.println("+block+");";
-//                rewriter.insertAfter(ctx.tryB.start, alter);
-//                preInserter(ctx, "TRY_", tryblockindex);
-//                tryblockindex++;
-//            default:
-//                ;
-//        }
-//        super.enterStatement(ctx);
-//    }
-//
-//    /**
-//	 * {@inheritDoc}
-//	 *
-//	 * <p>HANDLING FOR ENTRING CATCH STATEMENT</p>
-//     * @param ctx CatchClauseContext
-//     *
-//	 */
-//    @Override
-//    public void enterCatchClause(JavaParser.CatchClauseContext ctx) {
-//        block = String.format("\"CATCH_%d\"", catchblockindex);
-//        alter = "\n\t\tSystem.out.println("+block+");";
-//        rewriter.insertAfter(ctx.catchB.getStart(), alter);
-//        preInserter(ctx, "CATCH_", catchblockindex);
-//        catchblockindex++;
-//        super.enterCatchClause(ctx);
-//    }
-//
-//
-//     /**
-//	 * {@inheritDoc}
-//	 *
-//	 * <p>HANDLING FOR ENTRING FINALLY STATEMENT</p>
-//     * @param ctx FinallyBlockContext
-//     *
-//	 */
-//    @Override
-//    public void enterFinallyBlock(JavaParser.FinallyBlockContext ctx) {
-//        block = String.format("\"FINALLY_%d\"", finallyblockindex);
-//        alter = "\n\t\tSystem.out.println("+block+");";
-//        rewriter.insertAfter(ctx.block().getStart(), alter);
-//        preInserter(ctx, "FINALLY_", finallyblockindex);
-//        finallyblockindex++;
-//        super.enterFinallyBlock(ctx);
-//    }
-//    /**
-//	 * {@inheritDoc}
-//	 *
-//	 * <p>HANDLING FOR ENTRING ELSE STATEMENT</p>
-//     * @param ctx StatementContext
-//     *
-//	 */
-//    @Override
-//    public void enterElseStatement(JavaParser.ElseStatementContext ctx) {
-//
-//        block = String.format("\"ELSE_%d\"", elseblockindex);
-//        alter = "\n\t\tSystem.out.println("+block+");";
-//        if(ctx.getChildCount()>0){
-//
-//
-//
-//
-//            if(!ctx.elseS.getStart().getText().equals("if")){
-//                if(ctx.getChild(1).getText().charAt(0) =='{') {
-//                    rewriter.insertAfter(ctx.elseS.getStart(), alter);
-//
-//                }
-//                else{
-//                    rewriter.insertAfter(ctx.ELSE().getSymbol(), '{');
-//                    rewriter.insertAfter(ctx.elseS.getStop(), alter+"\n\t\t}");
-//
-//                }
-//            }
-//            preInserter(ctx, "ELSE_", elseblockindex);
-//            elseblockindex++;
-//        }
-//
-//
-//        super.enterElseStatement(ctx);
-//    }
-//
      /**
 	 * {@inheritDoc}
 	 *
@@ -504,4 +412,48 @@ public class MyJavaListener extends JavaParserBaseListener{
 
         rewriter2.insertAfter(ctx.stop, "</pre>");
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>helper method to inster the HTML tag PRE before every statment</p>
+     * @param end Token
+     * @param start Token
+     * @param s String
+     * @param index int
+     *
+     */
+    void preInserter(Token start,Token end ,  String s, int index){
+        String html_div =" <span id='"+s+index+"'>";
+        rewriter2.insertBefore(start,html_div);
+
+        rewriter2.insertAfter(end, "</span>");
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>helper method to check the par expression rule  : return the left
+     *    child to check at, if there is not boolean operation will return true
+     * </p>
+     * @param ctx ParserRuleContext
+     *
+     */
+    private String parExpression (JavaParser.ExpressionContext ctx) {
+        // check if there is a boolean operation
+        try {
+            if (ctx.bop != null) {
+                String bop = ctx.bop.getText();
+                if (bop.equals("||") || bop.equals("&&")) {
+                    booleanOperation = bop;
+                    return ctx.getChild(0).getText(); // left child
+                }
+            }
+        }catch (Exception e ) {
+
+        }
+        booleanOperation = "" ;
+        return "" ;
+    }
+
 }

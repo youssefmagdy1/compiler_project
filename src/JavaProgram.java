@@ -15,7 +15,7 @@ public class JavaProgram {
     public static  void main(String[] args) throws Exception {
 
 
-        Scanner sc = new Scanner(System.in); //System.in is a standard input stream.
+        Scanner sc = new Scanner(System.in); //System.in is a standard input
         System.out.println("\nDo u have a test path for me? ...");
         System.out.println("Enter 1 for yes or 0 for no...");
         String response = sc.nextLine();
@@ -53,7 +53,7 @@ public class JavaProgram {
      * @param input CharStream
      * 
 	 */
-    public static  MyJavaListener generateAndWalkParserTree(CharStream input ) {
+    public static  MyJavaListener generateAndWalkParserTree(CharStream input ){
         JavaLexer lexer = new JavaLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         JavaParser parser = new JavaParser(tokens);
@@ -75,7 +75,8 @@ public class JavaProgram {
      * @param testNumber String
      * 
 	 */
-    public static File  generateJavaInjectionCode (MyJavaListener extractor , String testNumber)
+    public static File  generateJavaInjectionCode (MyJavaListener extractor,
+                                                   String testNumber)
             throws IOException
     {
         // output file and directory
@@ -112,13 +113,13 @@ public class JavaProgram {
         String outputFileName= outputJavaFile.getName() ;
 
         outputJavaFile.getParentFile().mkdirs();
-        //Files.write(outputJavaFile.toPath(), javaOutput.getBytes(StandardCharsets.UTF_8));
 
         // Compile source file.
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         compiler.run(null, System.out, null, outputJavaFile.getPath());
         try{
-            theProcess = Runtime.getRuntime().exec("java output/"+outputFileName);
+            theProcess = Runtime.getRuntime().exec(
+                    "java output/"+outputFileName);
         }
         catch(IOException e){
             System.err.println("Error on exec() method");
@@ -139,14 +140,16 @@ public class JavaProgram {
      * @param extractor MyJavaListener
      *
 	 */
-    public static void writeHtml (BufferedReader  inStream ,MyJavaListener extractor) throws IOException {
+    public static void writeHtml (BufferedReader  inStream ,
+                                  MyJavaListener extractor) throws IOException {
 
         // TODO : add file to another directory
-        File outputHtmlFile = new File(outputDir+"html/"+outputFileName+".html") ;
-        FileWriter myHtmlWriter = new FileWriter(outputDir +"html/"+outputFileName+".html" );
+        File outputHtmlFile = new File(outputDir+"html/"+outputFileName+".html");
+        FileWriter myHtmlWriter = new FileWriter(
+                outputDir +"html/"+outputFileName+".html" );
 
         myHtmlWriter.write( "<html> \n<head> \n<style>\n" +
-                " body{background: chartreuse;}\n pre{background : lightsalmon}\n" +
+                "body{background: chartreuse;}\n pre{background : lightsalmon}\n"+
                 "pre{display:inline ;}") ;
         String s = null;
         // write style of the code
@@ -157,13 +160,22 @@ public class JavaProgram {
                 continue;
             }
             System.out.println(s);
-            s = "#"+s+"{background:chartreuse}\n" ;
+            if(s.matches("(.*)GpreExpression(.*)"))
+            {
+                s = "#"+s.replace("G" ,"")
+                        +"{background:chartreuse !important}\n";
+            }else if (s.matches("(.*)preExpression(.*)")){
+                s = "#"+s+"{background:orange}\n" ;
+            } else {
+                s = "#"+s+"{background:chartreuse}\n" ;
+            }
             myHtmlWriter.write(s);
         }
 
-        myHtmlWriter.write("</style>\n </head>\n <body> <pre style='background: chartreuse;'>\n") ;
-//        myHtmlWriter.write("<pre>"+extractor.getRewriter2().getText()+"</pre>");
-        myHtmlWriter.write(extractor.getRewriter2().getText().replace("\n", "<br>"));
+        myHtmlWriter.write("</style>\n </head>\n <body> "+
+                "<pre style='background: chartreuse;'>\n") ;
+        myHtmlWriter.write(extractor.getRewriter2().getText()
+                .replace("\n", "<br>"));
         myHtmlWriter.write(" </pre></body> \n</html> \n") ;
 
         myHtmlWriter.close();

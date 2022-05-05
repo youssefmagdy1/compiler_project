@@ -5,7 +5,7 @@ public class test_1 {
 
         int x = 3 ;
         int y = 40;
-        if (x == 6 || y >= 50)
+        if ((x == 3 || y >= 50) || x==2   )
         {
             x = 0;
         }else if( x< 4)
