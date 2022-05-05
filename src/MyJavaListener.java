@@ -14,13 +14,15 @@ public class MyJavaListener extends JavaParserBaseListener{
     int switchblockindex = 0;
     int tryblockindex = 0;
     int finallyblockindex = 0;
-      /***************************************************************************//**
-     * fn MyListenerParser(JavaParser parser)
+    int caseblockindex = 0;
+      /***************************************************************************
+     //**
+     * fn MyJavaListener(TokenStream tokens)
      * The Consturtor of the class
      *  rewriter is used to rewrite the tokens => Java injections 
      * rewriter2 is used to rewrite the tokens => HTML Tages injections
      * This initializes the parser while making a JavaParser instance
-     * @param parser
+     * @param tokens
      ******************************************************************************/
     public MyJavaListener(TokenStream tokens){
         rewriter = new TokenStreamRewriter(tokens); // 
@@ -111,7 +113,7 @@ public class MyJavaListener extends JavaParserBaseListener{
                 preInserter(ctx, "TRY_", tryblockindex);
                 tryblockindex++;
             default:
-                ;
+
         }
         super.enterStatement(ctx);
     }
@@ -186,7 +188,16 @@ public class MyJavaListener extends JavaParserBaseListener{
         super.enterElseStatement(ctx);
     }
 
-     /**
+    @Override
+    public void enterSwitchLabel(JavaParser.SwitchLabelContext ctx) {
+        block = String.format("\"CASE_%d from SWITCH_%d\"", caseblockindex, switchblockindex-1);
+        alter = "\n\t\tSystem.out.println("+block+");";
+        rewriter.insertAfter(ctx.stop, alter);
+        caseblockindex++;
+        super.enterSwitchLabel(ctx);
+    }
+
+    /**
 	 * {@inheritDoc}
 	 *
 	 * <p>helper method to inster the HTML tag PRE before every statment</p>
