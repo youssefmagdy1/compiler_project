@@ -15,7 +15,7 @@
   2. Run the modified Java file to check which code is visited
   #### Program Before Injection
   ![simpleJava](snapshots/simpleJava.PNG?raw=true "Optional Title")
-  #### Program Before Injection
+  #### Program After Injection
   ![simpleJavaAfterInjection](snapshots/simpleJavaAfterInjection.PNG?raw=true "Optional Title")
 
 # <i>Task 3</i>: 
