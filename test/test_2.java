@@ -10,7 +10,7 @@ public class test_2 {
         //Loop through the array
         for (int k : arr) {
             //Compare elements of array with max
-            if (k > max)
+            if (k == 1 )
                 max = k;
         }
 

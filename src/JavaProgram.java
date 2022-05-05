@@ -38,7 +38,9 @@ public class JavaProgram {
                     i++;
                 }
             }else {
-                processor("test/test_"+testNumber+".java", testNumber);
+                int no_test  =  Integer.parseInt(testNumber) ;
+                if(no_test <= 6 )
+                    processor("test/test_"+testNumber+".java", testNumber);
             }
         }
 
@@ -112,7 +114,6 @@ public class JavaProgram {
         outputJavaFile.getParentFile().mkdirs();
         //Files.write(outputJavaFile.toPath(), javaOutput.getBytes(StandardCharsets.UTF_8));
 
-
         // Compile source file.
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         compiler.run(null, System.out, null, outputJavaFile.getPath());
@@ -134,16 +135,19 @@ public class JavaProgram {
 	 * {@inheritDoc}
 	 *
 	 * <p>CONVERT JAVA TO HTML AND INSERT PRE TAG BEFORE EVERY BLOCK </p>
-     * @param input CharStream
-     * 
+     * @param inStream BufferedReader
+     * @param extractor MyJavaListener
+     *
 	 */
     public static void writeHtml (BufferedReader  inStream ,MyJavaListener extractor) throws IOException {
 
-        File outputHtmlFile = new File(outputDir+outputFileName+".html") ;
-        FileWriter myHtmlWriter = new FileWriter(outputDir +outputFileName+".html" );
+        // TODO : add file to another directory
+        File outputHtmlFile = new File(outputDir+"html/"+outputFileName+".html") ;
+        FileWriter myHtmlWriter = new FileWriter(outputDir +"html/"+outputFileName+".html" );
 
         myHtmlWriter.write( "<html> \n<head> \n<style>\n" +
-                " body{background: chartreuse;}\n pre{background : lightsalmon}\n" ) ;
+                " body{background: chartreuse;}\n pre{background : lightsalmon}\n" +
+                "pre{display:inline ;}") ;
         String s = null;
         // write style of the code
 
@@ -157,10 +161,10 @@ public class JavaProgram {
             myHtmlWriter.write(s);
         }
 
-        myHtmlWriter.write("</style>\n </head>\n <body>\n") ;
+        myHtmlWriter.write("</style>\n </head>\n <body> <pre style='background: chartreuse;'>\n") ;
 //        myHtmlWriter.write("<pre>"+extractor.getRewriter2().getText()+"</pre>");
         myHtmlWriter.write(extractor.getRewriter2().getText().replace("\n", "<br>"));
-        myHtmlWriter.write("</body> \n</html> \n") ;
+        myHtmlWriter.write(" </pre></body> \n</html> \n") ;
 
         myHtmlWriter.close();
 
@@ -183,7 +187,6 @@ public class JavaProgram {
 
         File outputJavaFile =  generateJavaInjectionCode(extractor , testNum) ;
 
-        // run the file
         BufferedReader inStream = runJavaInjectionCode (outputJavaFile) ;
 
         writeHtml(inStream ,extractor) ;

@@ -478,25 +478,25 @@ localTypeDeclaration
     ;
 
 statement
-    : blockLabel=block
-    | ASSERT expression (':' expression)? ';'
-    | IF parExpression ifS=statement elseStatement
-    | FOR '(' forControl ')' forS=statement
-    | WHILE parExpression whileS=statement
-    | DO doS=statement WHILE parExpression ';'
-    | TRY tryB=block (catchClause+ finallyBlock? | finallyBlock)
-    | TRY resourceSpecification tryB=block catchClause* finallyBlock?
-    | SWITCH parExpression switchS='{' switchBlockStatementGroup* switchLabel* '}'
-    | SYNCHRONIZED parExpression block
-    | RETURN expression? ';'
-    | THROW expression ';'
-    | BREAK identifier? ';'
-    | CONTINUE identifier? ';'
-    | YIELD expression ';' // Java17
-    | SEMI
-    | statementExpression=expression ';'
-    | switchExpression ';'? // Java17
-    | identifierLabel=identifier ':' statement
+    : blockLabel=block                                                  #block_s
+    | ASSERT expression (':' expression)? ';'                           #assert_s
+    | IF parExpression ifS=statement elseStatement                      #if_s
+    | FOR '(' forControl ')' forS=statement                             #for_s
+    | WHILE parExpression whileS=statement                              #while_s
+    | DO doS=statement WHILE parExpression ';'                          #do_s
+    | TRY tryB=block (catchClause+ finallyBlock? | finallyBlock)        #try_1_s
+    | TRY resourceSpecification tryB=block catchClause* finallyBlock?   #try_2_s
+    | SWITCH parExpression switchS='{' switchBlockStatementGroup* switchLabel* '}' #switch_s
+    | SYNCHRONIZED parExpression block                                  #synchronized_s
+    | RETURN expression? ';'                                            #return_s
+    | THROW expression ';'                                              #throw_s
+    | BREAK identifier? ';'                                             #break_s
+    | CONTINUE identifier? ';'                                          #continue_s
+    | YIELD expression ';'                                              #yield_s    // Java17
+    | SEMI                                                              #semi_s
+    | statementExpression=expression ';'                                #expression_s
+    | switchExpression ';'?                                             #switch_e_s // Java17
+    | identifierLabel=identifier ':' statement                          #identifier_s
     ;
 
 elseStatement
